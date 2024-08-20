@@ -8,44 +8,72 @@
 <body>
     <script>
         class Product {
-            #name = "Kipas";
-            #harga = 120.000;
-            #stok = 14;
-            get stock() {
-                return this.#stok;
+            constructor(nama, harga, stock){
+                this.nama = nama;
+                this.harga = harga;
+                this.stock = stock;
             }
-            set stock(stock) {
-                this.#stok = stock;
+
+            getNama() {
+                return this.nama;
             }
-            get harga() {
-                return this.#harga;
+            getHarga() {
+                return this.harga;
             }
-            set harga(harga) {
-                this.#harga = harga;
+            getStock() {
+                return this.stock;
+            }
+
+            kurangiStock(jumlah) {
+                if(jumlah > this.stock){
+                    console.log('Stock tidak mencukupi');
+                } else {
+                    this.stock -= jumlah;
+                }
+            }
+            
+            toString() {
+                return `Nama: ${this.nama}, Harga: ${this.harga}, Stock: ${this.stock}`;
             }
         }
-        const stock = new Product();
-        const harga = new Product();
-        Product.harga = 150000;
-        console.log(Product.harga)
-        
-        // class PaymentMethod {
-        //     class CreditCard extends PaymentMethod {
-        //         constructor(parameters) {
-                    
-        //         }
-        //     }
-        //     class Paypal extends PaymentMethod {
-        //         constructor(parameters) {
-                    
-        //         }
-        //     }
-        //     class BankTransfer extends PaymentMethod {
-        //         constructor(parameters) {
-                    
-        //         }
-        //     }
-        // }
+        class PaymentMethod {
+            bayar(jumlah) {
+                throw new Error(`Subclass Harus Mengimplementasikan Method ini!`);
+            }
+        }
+            class CreditCard extends PaymentMethod {
+                bayar(jumlah) {
+                    console.log(`Pembayaran ${jumlah} menggunakan Credit Card`);
+                }
+            }
+            class Paypal extends PaymentMethod {
+                bayar(jumlah) {
+                    console.log(`Pembayaran ${jumlah} menggunakan Paypal`);
+                }
+            }
+            class BankTransfer extends PaymentMethod {
+                bayar(jumlah) {
+                    console.log(`Pembayaran ${jumlah} menggunakan Bank Transfer`);
+                }
+            }
+
+        function main() {
+            const produk = new Product("Kipas Angin", 150000, 10);
+            console.log(produk.toString());
+
+            const jumlahBeli = 7;
+
+            produk.kurangiStock(jumlahBeli);
+            console.log(`Stock setelah Pembelian: ${produk.getStock()}`);
+
+            const metodePembayaran = new BankTransfer();
+            const totalHarga = produk.getHarga() * jumlahBeli;
+            metodePembayaran.bayar(totalHarga);
+
+            console.log(`Total Harga yang harus dibayarkan: ${totalHarga}`);
+        }
+
+        main();
     </script>
 </body>
 </html>
