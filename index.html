@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Product {
+            #name = "Kipas";
+            #harga = 120.000;
+            #stok = 14;
+            get stock() {
+                return this.#stok;
+            }
+            set stock(stock) {
+                this.#stok = stock;
+            }
+            get harga() {
+                return this.#harga;
+            }
+            set harga(harga) {
+                this.#harga = harga;
+            }
+        }
+        const stock = new Product();
+        const harga = new Product();
+        Product.harga = 150000;
+        console.log(Product.harga)
+        
+        // class PaymentMethod {
+        //     class CreditCard extends PaymentMethod {
+        //         constructor(parameters) {
+                    
+        //         }
+        //     }
+        //     class Paypal extends PaymentMethod {
+        //         constructor(parameters) {
+                    
+        //         }
+        //     }
+        //     class BankTransfer extends PaymentMethod {
+        //         constructor(parameters) {
+                    
+        //         }
+        //     }
+        // }
+    </script>
+</body>
+</html>
